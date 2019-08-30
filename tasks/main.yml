@@ -1,0 +1,29 @@
+- name: Install apt-https-transport
+  apt:
+          name: apt-transport-https
+          state: latest
+
+- name: Install snapshot repository
+  apt_repository:
+        repo: "deb https://snapshot.debian.org/archive/debian/{{debsnap_timestamp}}/ {{ansible_distribution_release}} main"
+        state: present
+
+- name: Check-Valid-Until false
+  copy:
+          src: "apt.conf"
+          dest: "/etc/apt/apt.conf.d/00snapshot"
+
+- name: Pin snapshot repository
+  copy:
+          src: "preferences.conf"
+          dest: "/etc/apt/preferences.d/snapshot"
+
+- name: Disable security repository
+  lineinfile: 
+        dest: /etc/apt/sources.list
+        state: absent
+        regexp: 'security.debian.org'
+
+- name: Update apt-cache
+  apt:
+        update_cache: yes
