@@ -23,12 +23,6 @@
       src: "sources.list"
       dest: "/etc/apt/sources.list"
 
-# - name: Disable security repository
-#   lineinfile:
-#         dest: /etc/apt/sources.list
-#         state: absent
-#         regexp: 'security.debian.org'
-
 - name: Update apt-cache
   apt:
       update_cache: yes
