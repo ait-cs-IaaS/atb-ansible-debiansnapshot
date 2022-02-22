@@ -7,7 +7,7 @@
 - name: Install snapshot repository
   become: yes
   apt_repository:
-      repo: "deb https://snapshot.debian.org/archive/debian/{{debsnap_timestamp}}/ {{ansible_distribution_release}} main"
+      repo: "deb http://snapshot.debian.org/archive/debian/{{debsnap_timestamp}}/ {{ansible_distribution_release}} main"
       state: present
 
 - name: Check-Valid-Until false
