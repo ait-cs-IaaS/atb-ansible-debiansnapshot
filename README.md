@@ -10,6 +10,7 @@ Installs a debiansnapshot repository
 
 ```yaml
 debsnap_timestamp: 20190412T204517Z
+debsnap_httpmethod: https
 ```
 
 ## Example Playbook
